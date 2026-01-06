@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("index.html")
 
 @app.route("/plagiarism", methods=["GET", "POST"])
 def plagiarism():
@@ -65,3 +65,4 @@ def style():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
