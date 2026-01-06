@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <svg class="icon-sparkle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+                </svg>
+                AI-Powered Intelligence
+            </div>
+            <h1 class="hero-title">Revolusi Analisis Dokumen</h1>
+            <p class="hero-subtitle">
+                Platform canggih berbasis kecerdasan buatan untuk mendeteksi plagiarisme
+                dan menganalisis gaya penulisan dengan akurasi tinggi dan kecepatan ekstrem.
+            </p>
+            <div class="hero-badges">
+                <span class="badge badge-glow">
+                    <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    Kilat Cepat
+                </span>
+                <span class="badge badge-glow">
+                    <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="12" r="6"/>
+                        <circle cx="12" cy="12" r="2"/>
+                    </svg>
+                    Presisi Tinggi
+                </span>
+                <span class="badge badge-glow">
+                    <svg class="badge-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    100% Aman
+                </span>
+            </div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Akurasi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number"><10s</div>
+                <div class="stat-label">Waktu Analisis</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Dokumen</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-grid">
+    <div class="feature-card card-hover">
+        <div class="feature-icon-wrapper">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </div>
+        <div class="feature-badge">Deteksi Plagiarisme</div>
+        <h3 class="feature-title">Cek Kemiripan Dokumen</h3>
+        <p class="feature-description">
+            Temukan kesamaan konten antar dokumen dengan presisi tinggi.
+            Mendeteksi plagiarisme menggunakan algoritma <b>TF-IDF</b> 
+            dan <b>Cosine Similarity</b> yang canggih.
+        </p>
+        <div class="feature-features">
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                TF-IDF Analysis
+            </span>
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Cosine Similarity
+            </span>
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+                Risk Detection
+            </span>
+        </div>
+        <a href="/plagiarism" class="btn btn-primary">
+            Mulai Deteksi
+            <span class="btn-arrow">→</span>
+        </a>
+    </div>
+
+    <div class="feature-card card-hover">
+        <div class="feature-icon-wrapper">
+            <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                <path d="M2 2l7.586 7.586"/>
+                <circle cx="11" cy="11" r="2"/>
+            </svg>
+        </div>
+        <div class="feature-badge">Analisis Gaya</div>
+        <h3 class="feature-title">Bandingkan Gaya Menulis</h3>
+        <p class="feature-description">
+            Analisis mendalam terhadap pola penulisan untuk mengidentifikasi
+            kemiripan gaya bahasa, struktur kalimat, dan kosa kata yang digunakan.
+        </p>
+        <div class="feature-features">
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+                Sentence Analysis
+            </span>
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                Word Complexity
+            </span>
+            <span class="feature-tag">
+                <svg class="tag-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                Vocabulary Richness
+            </span>
+        </div>
+        <a href="/style" class="btn btn-primary">
+            Analisis Sekarang
+            <span class="btn-arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<section class="info-section">
+    <h2 class="section-title">
+        <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+        </svg>
+        Cara Kerja
+    </h2>
+    <div class="steps-container">
+        <div class="step-item">
+            <div class="step-number">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <h4>Upload Dokumen</h4>
+                <p>Unggah PDF, gambar, atau paste teks langsung</p>
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-number">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <h4>AI Processing</h4>
+                <p>Otomatis mengekstrak dan memproses teks</p>
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-number">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12h20"/>
+                    <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/>
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="m12 22 7-4 3 1-10 6-10-6 3-1 7 4z"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <h4>Analisis Mendalam</h4>
+                <p>Perhitungan kemiripan dengan algoritma canggih</p>
+            </div>
+        </div>
+        <div class="step-item">
+            <div class="step-number">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </div>
+            <div class="step-content">
+                <h4>Hasil Instan</h4>
+                <p>Laporan detail dengan visual yang menarik</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

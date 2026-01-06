@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="page-badge">
+        <svg class="badge-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Deteksi Plagiarisme
+    </div>
+    <h1 class="page-title">Cek Kemiripan Dokumen</h1>
+    <p class="page-description">
+        Unggah dua dokumen (PDF atau gambar) atau paste teks langsung untuk 
+        mendeteksi plagiarisme dengan akurasi tinggi menggunakan teknologi AI canggih.
+    </p>
+</div>
+
+<div class="form-container">
+    <form method="POST" enctype="multipart/form-data" class="analysis-form">
+        <div class="input-group">
+            <label class="input-label">
+                <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Dokumen Pertama
+            </label>
+            <textarea name="text1" class="text-input" placeholder="Paste teks di sini (opsional jika mengunggah file)..."></textarea>
+            <div class="file-input-wrapper">
+                <label class="file-label">
+                    <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="file-text">Unggah PDF/Gambar</span>
+                    <input type="file" name="file1" class="file-input" accept=".pdf,.png,.jpg,.jpeg">
+                </label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">
+                <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Dokumen Kedua
+            </label>
+            <textarea name="text2" class="text-input" placeholder="Paste teks di sini (opsional jika mengunggah file)..."></textarea>
+            <div class="file-input-wrapper">
+                <label class="file-label">
+                    <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="file-text">Unggah PDF/Gambar</span>
+                    <input type="file" name="file2" class="file-input" accept=".pdf,.png,.jpg,.jpeg">
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-submit">
+            <span class="btn-text">Analisis Sekarang</span>
+            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+        </button>
+    </form>
+</div>
+
+{% if error %}
+<div class="error-card">
+    <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>
+    <div class="error-content">
+        <h3 class="error-title">Error</h3>
+        <p class="error-message">{{ error }}</p>
+    </div>
+</div>
+{% endif %}
+
+{% if result is not none %}
+<div class="result-card">
+    <div class="result-header">
+        <div class="result-badge">
+            <svg class="badge-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+            </svg>
+            Hasil Analisis
+        </div>
+        <h2 class="result-title">Laporan Deteksi Plagiarisme</h2>
+    </div>
+
+    <div class="overall-score risk-{{ result.risk_level }}">
+        <div class="score-circle">
+            <div class="score-value">{{ result.overall_score }}%</div>
+            <div class="score-label">Tingkat Kemiripan</div>
+        </div>
+        <p class="interpretation">{{ result.interpretation }}</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <div class="stat-content">
+                <h4>Dokumen 1</h4>
+                <p class="stat-text">{{ result.stats.text1.words }} kata ({{ result.stats.text1.unique_words }} unik)</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <div class="stat-content">
+                <h4>Dokumen 2</h4>
+                <p class="stat-text">{{ result.stats.text2.words }} kata ({{ result.stats.text2.unique_words }} unik)</p>
+            </div>
+        </div>
+        <div class="stat-card stat-highlight">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <div class="stat-content">
+                <h4>Kata Sama</h4>
+                <p class="stat-text">{{ result.stats.common_words }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="breakdown-section">
+        <h3 class="section-header">
+            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Analisis Detail
+        </h3>
+        <div class="breakdown-table">
+            {% for key, item in result.breakdown.items() %}
+            <div class="breakdown-row">
+                <div class="breakdown-info">
+                    <h4 class="breakdown-label">{{ item.label }}</h4>
+                    <p class="breakdown-description">{{ item.description }}</p>
+                </div>
+                <div class="breakdown-score">
+                    <span class="score-badge score-{{ item.score | int // 25 }}">{{ item.score }}%</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if result.matching_phrases %}
+    <div class="matching-section">
+        <h3 class="section-header">
+            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="6"/>
+                <circle cx="12" cy="12" r="2"/>
+            </svg>
+            Frase yang Cocok Ditemukan
+        </h3>
+        <div class="matching-phrases">
+            {% for phrase in result.matching_phrases %}
+            <span class="phrase-tag">"{{ phrase }}"</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<script>
+// File upload confirmation
+document.querySelectorAll('.file-input').forEach(input => {
+    input.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const wrapper = this.closest('.file-input-wrapper');
+            const fileLabel = wrapper.querySelector('.file-text');
+            const fileName = file.name;
+            const fileSize = (file.size / 1024).toFixed(2) + ' KB';
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'upload-success';
+            successMsg.innerHTML = `
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <span class="upload-text">${fileName} (${fileSize}) berhasil diupload!</span>
+            `;
+            
+            // Remove existing message if any
+            const existingMsg = wrapper.querySelector('.upload-success');
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+            
+            // Add new message
+            wrapper.appendChild(successMsg);
+            
+            // Update file label
+            fileLabel.textContent = fileName;
+            fileLabel.style.color = '#10b981';
+            fileLabel.style.fontWeight = '600';
+            
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                successMsg.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (successMsg.parentNode) {
+                        successMsg.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+    });
+});
+</script>
+
+<style>
+.upload-success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #d1fae5;
+    border: 1px solid #10b981;
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.upload-icon {
+    font-size: 1rem;
+}
+
+.upload-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #065f46;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="page-badge">
+        <svg class="badge-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+        </svg>
+        Analisis Gaya
+    </div>
+    <h1 class="page-title">Bandingkan Gaya Menulis</h1>
+    <p class="page-description">
+        Analisis mendalam gaya penulisan dari teks atau gambar (PNG/JPG). 
+        Sistem akan otomatis mengekstrak teks dari gambar menggunakan teknologi OCR 
+        dan membandingkan pola penulisan secara detail.
+    </p>
+</div>
+
+<div class="form-container">
+    <form method="POST" enctype="multipart/form-data" class="analysis-form">
+        <div class="input-group">
+            <label class="input-label">
+                <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Teks Pertama
+            </label>
+            <textarea name="text1" class="text-input" placeholder="Paste teks di sini (opsional jika mengunggah file)..."></textarea>
+            <div class="file-input-wrapper">
+                <label class="file-label">
+                    <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="file-text">Unggah File</span>
+                    <input type="file" name="file1" class="file-input" accept=".pdf,.png,.jpg,.jpeg">
+                </label>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">
+                <svg class="label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Teks Kedua
+            </label>
+            <textarea name="text2" class="text-input" placeholder="Paste teks di sini (opsional jika mengunggah file)..."></textarea>
+            <div class="file-input-wrapper">
+                <label class="file-label">
+                    <svg class="file-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    <span class="file-text">Unggah File</span>
+                    <input type="file" name="file2" class="file-input" accept=".pdf,.png,.jpg,.jpeg">
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-submit">
+            <span class="btn-text">Analisis Sekarang</span>
+            <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+            </svg>
+        </button>
+    </form>
+</div>
+
+{% if result is not none %}
+<div class="result-card">
+    <div class="result-header">
+        <div class="result-badge">
+            <svg class="badge-icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+            </svg>
+            Hasil Analisis
+        </div>
+        <h2 class="result-title">Laporan Analisis Gaya Menulis</h2>
+    </div>
+
+    <div class="overall-score">
+        <div class="score-circle">
+            <div class="score-value">{{ result.overall_score }}%</div>
+            <div class="score-label">Kemiripan Gaya</div>
+        </div>
+        <p class="interpretation">{{ result.interpretation }}</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <div class="stat-content">
+                <h4>Teks 1</h4>
+                <p class="stat-text">{{ result.stats.text1.words }} kata, {{ result.stats.text1.sentences }} kalimat</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <div class="stat-content">
+                <h4>Teks 2</h4>
+                <p class="stat-text">{{ result.stats.text2.words }} kata, {{ result.stats.text2.sentences }} kalimat</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="breakdown-section">
+        <h3 class="section-header">
+            <svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+            Analisis Detail
+        </h3>
+        <div class="style-breakdown-table">
+            {% for key, item in result.breakdown.items() %}
+            <div class="style-breakdown-row">
+                <div class="style-breakdown-header">
+                    <h4 class="style-breakdown-label">{{ item.label }}</h4>
+                </div>
+                <div class="style-breakdown-values">
+                    <div class="style-value">
+                        <span class="style-value-label">Teks 1</span>
+                        <span class="style-value-text">{{ item.text1 }}</span>
+                    </div>
+                    <div class="style-value">
+                        <span class="style-value-label">Teks 2</span>
+                        <span class="style-value-text">{{ item.text2 }}</span>
+                    </div>
+                </div>
+                <div class="style-breakdown-similarity">
+                    <span class="similarity-label">Kemiripan</span>
+                    <span class="score-badge score-{{ item.score | int // 25 }}">{{ item.score }}%</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<script>
+// File upload confirmation
+document.querySelectorAll('.file-input').forEach(input => {
+    input.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const wrapper = this.closest('.file-input-wrapper');
+            const fileLabel = wrapper.querySelector('.file-text');
+            const fileName = file.name;
+            const fileSize = (file.size / 1024).toFixed(2) + ' KB';
+            
+            // Show success message
+            const successMsg = document.createElement('div');
+            successMsg.className = 'upload-success';
+            successMsg.innerHTML = `
+                <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                <span class="upload-text">${fileName} (${fileSize}) berhasil diupload!</span>
+            `;
+            
+            // Remove existing message if any
+            const existingMsg = wrapper.querySelector('.upload-success');
+            if (existingMsg) {
+                existingMsg.remove();
+            }
+            
+            // Add new message
+            wrapper.appendChild(successMsg);
+            
+            // Update file label
+            fileLabel.textContent = fileName;
+            fileLabel.style.color = '#10b981';
+            fileLabel.style.fontWeight = '600';
+            
+            // Auto hide after 3 seconds
+            setTimeout(() => {
+                successMsg.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    if (successMsg.parentNode) {
+                        successMsg.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+    });
+});
+</script>
+
+<style>
+.upload-success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #d1fae5;
+    border: 1px solid #10b981;
+    border-radius: var(--radius-sm);
+    margin-top: 0.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.upload-icon {
+    font-size: 1rem;
+}
+
+.upload-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #065f46;
+}
+</style>
+
+{% endblock %}
